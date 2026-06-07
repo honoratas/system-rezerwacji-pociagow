@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rezerwacja Pociągów</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            background-color: #f4f5f7; /* Jasnoszare tło z makiety */
+            font-family: 'Arial', sans-serif;
+            padding: 40px 0;
+        }
+        .section-title {
+            text-align: center;
+            letter-spacing: 4px;
+            font-weight: 800;
+            margin-bottom: 30px;
+            text-transform: uppercase;
+        }
+        .ui-card {
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+            padding: 40px;
+            margin-bottom: 60px;
+        }
+        /* Style dla tabeli H1 */
+        .orange-bar {
+            background-color: #ff7f0e;
+            color: white;
+            border-radius: 50px;
+            padding: 15px 40px;
+            font-weight: bold;
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 40px;
+        }
+        .custom-table {
+            border: 3px solid black;
+            text-align: center;
+        }
+        .custom-table th, .custom-table td {
+            border: 3px solid black;
+            padding: 20px;
+            vertical-align: middle;
+            font-weight: bold;
+        }
+        /* Style dla formularza H2 */
+        .form-label-custom {
+            text-align: center;
+            display: block;
+            font-weight: bold;
+            font-size: 1.1rem;
+            margin-bottom: 10px;
+            margin-top: 20px;
+        }
+        .custom-input {
+            border: 3px solid black;
+            border-radius: 0;
+            padding: 15px;
+            text-align: center;
+            font-size: 1.2rem;
+        }
+        .custom-input:focus {
+            box-shadow: none;
+            border-color: #ff7f0e;
+        }
+        .btn-orange {
+            background-color: #ff7f0e;
+            color: white;
+            border-radius: 50px;
+            padding: 12px 50px;
+            font-weight: bold;
+            border: none;
+            display: block;
+            margin: 40px auto 0 auto;
+        }
+        .btn-orange:hover {
+            background-color: #e67300;
+            color: white;
+        }
+    </form>
+    </style>
+</head>
+<body>
+
+<div class="container" style="max-width: 900px;">
+
+    <h2 class="section-title">Dostępne pociągi</h2>
+    <div class="ui-card">
+        <div class="orange-bar">
+            <span>Warszawa</span>
+            <span>|</span>
+            <span>1x Pasażer</span>
+            <span>|</span>
+            <span>1x Bilet Normalny</span>
+        </div>
+
+        <table class="table custom-table">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Kierunek</th>
+                    <th>Dostępne miejsca</th>
+                </tr>
+            </thead>
+            <tbody id="trains-list">
+                <tr><td>1</td><td>Gdańsk</td><td>45</td></tr>
+                <tr><td>2</td><td>Kraków</td><td>120</td></tr>
+                <tr><td>3</td><td>Wrocław</td><td>87</td></tr>
+            </tbody>
+        </table>
+    </div>
+
+    <h2 class="section-title">Zrób rezerwację</h2>
+    <div class="ui-card" style="max-width: 600px; margin: 0 auto;">
+        
+        <label class="form-label-custom">Imię</label>
+        <input type="text" id="fname" class="form-control custom-input">
+
+        <label class="form-label-custom">Nazwisko</label>
+        <input type="text" id="lname" class="form-control custom-input">
+
+        <label class="form-label-custom">ID Pociągu</label>
+        <input type="number" id="tid" class="form-control custom-input" placeholder="3">
+
+        <button class="btn-orange" onclick="bookTrain()">ZAREZERWUJ</button>
+        
+        <div id="toast-msg" class="text-center mt-3 text-success fw-bold" style="display:none;">
+            Rezerwacja została wysłana!
+        </div>
+    </div>
+
+</div>
+
+<script>
+    // Symulacja działania UI w JS (bez podpiętego backendu na potrzeby makiety)
+    function bookTrain() {
+        const fname = document.getElementById('fname').value;
+        const lname = document.getElementById('lname').value;
+        const tid = document.getElementById('tid').value;
+        
+        if(fname && lname && tid) {
+            document.getElementById('toast-msg').style.display = 'block';
+            setTimeout(() => {
+                document.getElementById('toast-msg').style.display = 'none';
+                document.getElementById('fname').value = '';
+                document.getElementById('lname').value = '';
+                document.getElementById('tid').value = '';
+            }, 3000);
+        } else {
+            alert('Wypełnij wszystkie pola poprawnie.');
+        }
+    }
+</script>
+
+</body>
+</html>
